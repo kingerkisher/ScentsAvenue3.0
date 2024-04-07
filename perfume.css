@@ -1,0 +1,141 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    font-family: var(-sm-font);
+}
+
+.lap{
+    background-color:#FDD551;
+}
+.header{
+    color: gold;
+    height: 80vh;
+    margin-top: 70px;
+    padding-top: 100px;
+    /* border: 1px solid black ; */
+    background-image: url(./image/image-001.png);
+    background-size: cover !important;  
+    background-repeat: no-repeat;
+    background-position: center 100%;
+}
+
+.navigation .zap{
+    position: relative;
+    color: black;
+}
+
+.navigation .zap::after{
+    content: '';
+    position: absolute;
+    width: 100%;
+    background:gold;
+    height: 3px;
+    right: 0;
+    left: 0;
+    bottom: 3px;
+    transform: scaleX(0);
+    transition: transform .3s;
+}
+
+.navigation .zap:hover::after{
+    transform: scaleX(1);
+}
+
+.btn:not(.nav-btns button){
+    background-color: white;
+    /* color: ; */
+    padding: 10px 28px;
+    border-radius: 25px;
+    border: 1px solid black;
+}
+.btn:not(.nav-btns):hover{
+    background-color: #FDD551;
+    color: white;
+    border-color: gold;
+}
+.text_control{
+    /* border: 1px solid black; */
+    /* padding: 10px; */
+    height: 150px;
+    display: flex;
+    /* align-items: center; */
+}
+
+/* our fav */
+.active-filter-btn{
+    background-color:#FDD551 !important;
+    color: black;
+    border-color: #FDD551;
+}
+
+.zap{
+    text-decoration: none;
+    color: black;
+}
+
+/* .add{
+    height:10vh;
+    border: 1px springgreen solid;
+} */
+
+
+
+
+
+
+
+@media(max-width:650px){
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+    }
+    .header{
+        color: black;
+        /* min-width: 10px; */
+        height: 50vh;
+        /* margin-top: 76px; */
+    }
+    .btn:not(.nav-btns button){
+        background-color: gold;
+        /* color: ; */
+        /* padding: 10px 28px; */
+        border-radius: 25px;
+        border: 1px solid black;
+    }
+    .btn:not(.nav-btns):hover{
+        background-color: white;
+        color: gold;
+        border-color: white;
+    }
+    .text_control{
+        
+        /* height: 30vh; */
+        margin-top: -40px;
+        /* position: relative; */
+        /* display: flex; */
+        /* align-items: center; */
+    }
+    .active-filter-btn{
+        background-color:gold !important;
+        color: white;
+        border-color: green;
+    }
+    /* .fav button .nill{
+        background-color: ;
+    } */
+
+    .zappy img{
+        border: 1px solid black;
+        height: 200px !important;
+        background-color: black;
+    }
+}
+
+
