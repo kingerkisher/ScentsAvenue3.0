@@ -83,9 +83,49 @@ body{
     border: 1px springgreen solid;
 } */
 
+.move{
+    left: 0;
+}
 
+/* button for quick pick */
+.quick{
+    background-color: aliceblue;
+}
+.bo{
+    padding: 2px;
+    width: 20px;
+    border-radius: 10px;
+    border: none;
+    background-color: white;
+}
+.inner{
+    border: none;
+}
+.sell1{
+    /* border: 1px solid black; */
+    border-radius: 20px;
+    background-color: #FDD551;
 
+}
+.sell2{
+    /* border: 1px solid black; */
+    border-radius: 20px;
+    background-color: white;
+}
+.cart{
+    border: none;
+    background-color: #FDD551;
+}
 
+.zoom{
+    transition: transform .2s;
+}
+
+.zoom:hover {
+    -ms-transform: scale(2.5); /* IE 9 */
+    -webkit-transform: scale(2.5); /* Safari 3-8 */
+    transform: scale(2.5); 
+}
 
 
 
@@ -95,6 +135,10 @@ body{
         padding: 0;
         box-sizing: border-box;
         font-family: 'Poppins', sans-serif;
+    }
+    .logo{
+        width:120px !important;
+        height: 40px !important;
     }
     .header{
         color: black;
