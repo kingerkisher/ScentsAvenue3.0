@@ -263,6 +263,9 @@
 
 
 /* advert */
+.advert{
+    height:40vh;
+}
 
 .slideshow-container {
     position: relative;
