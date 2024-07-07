@@ -38,7 +38,6 @@ body {
     padding: none !important;
     margin-top: 10px;
     background-image: linear-gradient(to bottom right, #a0752b, #fdd5519c) !important;
-    min-width: 420px !important;
     position: fixed !important;
     right: 0px !important;
     top: 10px;
