@@ -1,23 +1,60 @@
 document.addEventListener("DOMContentLoaded", () => {
-    let slideIndex = 0;
-    showSlides();
+    /* adver slider starts */
 
-    function showSlides() {
-        let i;
-        let slides = document.getElementsByClassName("mySlides");
-        let dots = document.getElementsByClassName("dot");
-        for (i = 0; i < slides.length; i++) {
+    let slideIndex = 1;
+
+
+    let next = document.getElementById('next');
+    next.addEventListener('click', () => {
+        let n = 1;
+        // console.log('clicked right')
+        showSlides(slideIndex += n);
+
+    });
+
+    let prev = document.getElementById('prev');
+    prev.addEventListener('click', () => {
+        let n = -1;
+        // console.log('clicked left')
+        showSlides(slideIndex += n);
+        console.log(slideIndex);
+
+    });
+
+    /* adver slider ends */
+
+
+    // console.log(prev);
+
+    // First we create a funtion that is going to hide all the divs for the sliding images 
+    function showSlides(n) {
+        const slides = document.getElementsByClassName("mySlides");
+        // console.log(slides.length)
+
+        if (n > slides.length) {
+            slideIndex = 1;
+        }
+
+        if (n < 1) {
+            slideIndex = slides.length;
+            console.log(slides.length)
+
+        }
+
+        for (let i = 0; i < slides.length; i++) {
             slides[i].style.display = "none";
         }
-        slideIndex++;
-        if (slideIndex > slides.length) { slideIndex = 1 }
-        for (i = 0; i < dots.length; i++) {
-            dots[i].className = dots[i].className.replace(" active", "");
-        }
+
+
         slides[slideIndex - 1].style.display = "block";
-        dots[slideIndex - 1].className += " active";
-        setTimeout(showSlides, 3000); // Change image every 2 seconds
-    }
+
+        // console.log(slides);
+
+    };
+
+    // plusSlides();
+    showSlides(slideIndex);
+
 
 
     // var decrement = document.getElementById("decrement");
@@ -308,7 +345,7 @@ function manageQuantity() {
     let currentProduct;
 
     cartitems = JSON.parse(cartitems);
-    console.log(cartitems);
+    // console.log(cartitems);
 
     for (let i = 0; i < decreasebtn.length; i++) {
         decreasebtn[i].addEventListener('click', () => {
@@ -351,22 +388,22 @@ function manageQuantity() {
             // we try to grab the name of the current product we clicked on 
             currentProduct = increasebtn[i].parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.firstElementChild.querySelector('p').textContent.trim();
             console.log(currentProduct);
-                // The is going to show the name of the current product and the quantity
-                cartitems[currentProduct].inCart;
+            // The is going to show the name of the current product and the quantity
+            cartitems[currentProduct].inCart;
 
-                // Then we do what is in cart - 1
-                cartitems[currentProduct].inCart += 1;
+            // Then we do what is in cart - 1
+            cartitems[currentProduct].inCart += 1;
 
-                cartNumbers(cartitems[currentProduct]);
+            cartNumbers(cartitems[currentProduct]);
 
-                totalCost(cartitems[currentProduct]);
+            totalCost(cartitems[currentProduct]);
 
-                // update cart in the local storage 
-                localStorage.setItem('productinCart', JSON.stringify(cartitems));
+            // update cart in the local storage 
+            localStorage.setItem('productinCart', JSON.stringify(cartitems));
 
-                // Then we use the display function to display the current cart quantity
-                displayCart();
-            })
+            // Then we use the display function to display the current cart quantity
+            displayCart();
+        })
     }
 }
 
