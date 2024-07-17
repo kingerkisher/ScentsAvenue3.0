@@ -3,6 +3,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let slideIndex = 1;
 
+    setInterval(() => {
+        let n =1;
+        showSlides(slideIndex += n);
+
+    }, 5000)
+
+    let img1 = document.getElementById("img1");
+    img1.addEventListener("click", () => {
+        let n = 1;
+        showSlides(slideIndex = n);
+    });
+    let img2 = document.getElementById("img2");
+    img2.addEventListener("click", () => {
+        let n = 2;
+        showSlides(slideIndex = n);
+    });
+    let img3 = document.getElementById("img3");
+    img3.addEventListener("click", () => {
+        let n = 3;
+        showSlides(slideIndex = n);
+    });
+
 
     let next = document.getElementById('next');
     next.addEventListener('click', () => {
@@ -17,6 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let n = -1;
         // console.log('clicked left')
         showSlides(slideIndex += n);
+
         console.log(slideIndex);
 
     });
@@ -29,6 +52,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // First we create a funtion that is going to hide all the divs for the sliding images 
     function showSlides(n) {
         const slides = document.getElementsByClassName("mySlides");
+        // Grab the dots to assign functionality to the slides
+        const dots = document.getElementsByClassName("dot");
+
         // console.log(slides.length)
 
         if (n > slides.length) {
@@ -38,19 +64,27 @@ document.addEventListener("DOMContentLoaded", () => {
         if (n < 1) {
             slideIndex = slides.length;
             console.log(slides.length)
-
         }
 
         for (let i = 0; i < slides.length; i++) {
             slides[i].style.display = "none";
         }
 
+        for (let i = 0; i < dots.length; i++) {
+            if (dots[i].classList.contains("active")) {
+                dots[i].classList.remove("active");
+            }
+        }
+
+
 
         slides[slideIndex - 1].style.display = "block";
-
+        dots[slideIndex - 1].classList.add("active");
         // console.log(slides);
 
     };
+
+
 
     // plusSlides();
     showSlides(slideIndex);
@@ -148,7 +182,7 @@ setInterval(() => {
     var added = document.getElementById('added');
     added.style.display = "none";
 
-}, 2500);
+}, 2000);
 
 // we create another function to stop the clearing of the html cart
 function onloadCartnumber() {
