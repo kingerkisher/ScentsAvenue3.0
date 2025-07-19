@@ -1,203 +1,342 @@
-<!doctype html>
-<html lang="en">
+<?php
+session_start();
+require_once('./includes/connection.php');
+include('./functions/functions.php');
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>COGITO MAGNUM LTD</title>
-    <link rel="stylesheet" href="business.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-</head>
+?>
+<?php include_once("./includes/top.php"); ?>
+<!-- header -->
+<header class="header carousel slide" data-bs-ride="carousel" id="header">
+</header>
+<!-- End of header -->
 
-<body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-        <div class="container-fluid">
-            <a class="navbar-brand ms-3" href="index.html">
-                <img src="./images/Image_2024-12-09_at_12.27.38_006cb880-removebg-preview (2).png" class="img-fluid"
-                    style="height: auto; max-height: 70px; width: 70px; max-width: 250px;" alt="COGITO Magnum Ltd Logo">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+
+
+<!-- collections -->
+<section class=" " >
+
+    <div class="title text-center p-3">
+        <h2 id="fav"> Our Favourite</h2>
+    </div>
+    <div class="collection-list   container ">
+        <div class="row d-flex justify-content-center  align-items-center">
+
+            <div class="col- col-sm-5 col-md-7 col-lg-5 justify-content-center  d-flex align-items-center  ">
+                <?php
+                $sql_query = "SELECT * FROM products LIMIT 2;";
+                $query = mysqli_query($conn, $sql_query);
+                $show_products = mysqli_fetch_all($query, MYSQLI_ASSOC);
+                $number_of_show_produts = mysqli_num_rows($query);
+                ?>
+                <?php foreach ($show_products as $show_product) : ?>
+                    <div class="mon text-center  mx-4 ">
+                        <a href="display.php?display=<?php echo $show_product['perfume_id'] ?>"><img src="./DASH/upload/<?php echo $show_product['photo'] ?>" class="rounded" alt="" width="160px" height="190px" class="card-img-to"></a>
+                        <span class=" text-center ">
+                            <p class=" mb-0 text-capitalize"><?php echo $show_product['brand'] ?></p>
+                            <p class=" fw-bold  mb-0 text-truncate"><?php echo $show_product['perfume'] ?></p>
+                            <p class=" text-capitalize mb-0"><?php echo $show_product['consetration1'] ?></p>
+                            <p class=" fw-bold text-capitalize mb-0 price">NGN <?php echo number_format($show_product['price'])  ?></p>
+                            <p class="mb-0 boder    ">⭐⭐⭐⭐</p>
+                            <button type="button" class="zap2 add-cart btn mb-3 fw-bold px-4"><a href="updatecart.php?cart=<?php echo $show_product['perfume_id'] ?> &location=index" class="zap">ADD
+                                    TO CART</a></button>
+                        </span>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+
+
+            <div class="col- col-sm-5 col-md-7 col-lg-5  justify-content-center  d-flex align-items-center   ">
+                <?php
+                $sql_query = "SELECT * FROM products LIMIT 2 OFFSET 2;";
+                $query = mysqli_query($conn, $sql_query);
+                // Fetch all content in rows as associative arrays
+                $show_products = mysqli_fetch_all($query, MYSQLI_ASSOC);
+                // print_r($show_blogs); 
+
+                $number_of_show_produts = mysqli_num_rows($query);
+                ?>
+                <?php foreach ($show_products as $show_product) : ?>
+                    <div class="mon text-center mx-4  ">
+                        <a href="display.php?display=<?php echo $show_product['perfume_id'] ?>"><img src="./DASH/upload/<?php echo $show_product['photo'] ?>" class="rounded" alt="" width="160px" height="190px" class="card-img-to"></a>
+                        <span class=" text-center ">
+                            <p class=" mb-0 text-capitalize"><?php echo $show_product['brand'] ?></p>
+                            <p class=" fw-bold mb-0 text-truncate"><?php echo $show_product['perfume'] ?></p>
+                            <p class=" text-capitalize mb-0"><?php echo $show_product['consetration1'] ?></p>
+                            <p class=" fw-bold text-capitalize mb-0 price">NGN <?php echo number_format($show_product['price'])  ?></p>
+                            <p class="mb-0 boder    ">⭐⭐⭐⭐</p>
+                            <button type="button" class="zap2 add-cart btn mb-3 fw-bold px-4"><a href="updatecart.php?cart=<?php echo $show_product['perfume_id'] ?> &location=index" class="zap">ADD
+                                    TO CART</a></button>
+                        </span>
+                    </div>
+                <?php endforeach; ?>
+
+            </div>
+        </div>
+
+        <div class="row d-flex justify-content-center align-items-center">
+
+            <div class="col- col-sm-5 col-md-7 col-lg-5  justify-content-center  d-flex align-items-center  ">
+                <?php
+                $sql_query = "SELECT * FROM products LIMIT 2 OFFSET 4;";
+                $query = mysqli_query($conn, $sql_query);
+                $show_products = mysqli_fetch_all($query, MYSQLI_ASSOC);
+
+                $number_of_show_produts = mysqli_num_rows($query);
+                ?>
+
+                <?php foreach ($show_products as $show_product) : ?>
+                    <div class="text-center mx-4">
+                        <a href="display.php?display=<?php echo $show_product['perfume_id'] ?>"> <img src="./DASH/upload/<?php echo $show_product['photo'] ?>" class="rounded" alt="" width="160px" height="190px" class="card-img-to"></a>
+                        <span class=" text-center ">
+                            <p class=" mb-0 text-capitalize"><?php echo $show_product['brand'] ?></p>
+                            <p class=" fw-bold mb-0 text-truncate"><?php echo $show_product['perfume'] ?></p>
+                            <p class=" text-capitalize mb-0"><?php echo $show_product['consetration1'] ?></p>
+                            <p class=" fw-bold text-capitalize mb-0 price">NGN <?php echo number_format($show_product['price'])  ?></p>
+                            <p class="mb-0">⭐⭐⭐⭐</p>
+                            <button type="button" class="zap2 add-cart btn mb-3 fw-bold px-4"><a href="updatecart.php?cart=<?php echo $show_product['perfume_id'] ?> &location=index" class="zap">ADD
+                                    TO CART</a></button>
+                        </span>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+
+            <div class="col- col-sm-5 col-md-7 col-lg-5  justify-content-center  d-flex align-items-center   ">
+                <?php
+                $sql_query = "SELECT * FROM products LIMIT 2 OFFSET 6;";
+                $query = mysqli_query($conn, $sql_query);
+                $show_products = mysqli_fetch_all($query, MYSQLI_ASSOC);
+
+                $number_of_show_produts = mysqli_num_rows($query);
+                ?>
+
+                <?php foreach ($show_products as $show_product) : ?>
+                    <div class="text-center mx-4">
+                        <a href="display.php?display=<?php echo $show_product['perfume_id'] ?>"> <img src="./DASH/upload/<?php echo $show_product['photo'] ?>" class="rounded" alt="" width="160px" height="190px" class="card-img-to"></a>
+                        <span class=" text-center ">
+                            <p class=" mb-0 text-capitalize"><?php echo $show_product['brand'] ?></p>
+                            <p class=" fw-bold mb-0 text-truncate"><?php echo $show_product['perfume'] ?></p>
+                            <p class=" text-capitalize mb-0"><?php echo $show_product['consetration1'] ?></p>
+                            <p class=" fw-bold text-capitalize mb-0 price">NGN <?php echo number_format($show_product['price'])  ?></p>
+                            <p class="mb-0">⭐⭐⭐⭐</p>
+                            <button type="button" class="zap2 add-cart btn mb-3 fw-bold px-4"><a href="updatecart.php?cart=<?php echo $show_product['perfume_id'] ?> &location=index" class="zap">ADD
+                                    TO CART</a></button>
+                        </span>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+
+        <div class=" text-center my-3">
+            <button class="btn zap2 btn-outline-success rounded-pill "><a href="product.php" class="text-decoration-none">View-All</a>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#services">Our Services</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#about">About us</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact">Contact Us</a></li>
-                </ul>
-            </div>
         </div>
-    </nav>
+    </div>
 
+</section>
+<!-- favorites end -->
 
-    <section class="hero-section border">
-        <div class="container">
-            <div class="hero-text text-white">
-                <h1 class="fw-bold">Welcome to COGITO MAGNUM LTD</h1>
-                <p class="">Your trusted partner in business solutions, dedicated to helping you achieve success.</p> <a
-                    href="#contact" class="btn btn-primary cta-button">Contact Us Today</a>
-            </div>
+<!-- movin add -->
+<section class="container-fliud advert">
+    <div class="slideshow-container">
+        <div class="mySlides div1 fade">
         </div>
-    </section>
-
-    <section id="services" class="container" style="margin-top: 100px; padding-top: 100px;">
-        <h2 class="text-center mb-4">Our Services</h2>
-        <div class="row justify-content-center text-center">
-            <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                    <img src="./images/adeolu-eletu-E7RLgUjjazc-unsplash.jpg" class="card-img-top"
-                        alt="Service 1 Image">
-                    <div class="card-body">
-                        <h3 class="card-title">Jobs</h3>
-                        <p class="card-text">Let our team of experts do everything possible to take the pressure off. We
-                            specialize in sourcing and recruiting in many local industries, especially Retail. Contact
-                            us to jumpstart your career and make the process as straightforward as it can be.</p>
-                        <a href="details.html?service=jobs" class="btn btn-primary learn-more"
-                            id="learn-more-jobs">Learn More</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                    <img src="./images/charlesdeluvio-rRWiVQzLm7k-unsplash.jpg" class="card-img-top"
-                        alt="Service 2 Image">
-                    <div class="card-body">
-                        <h3 class="card-title">Users Welfare</h3>
-                        <p class="card-text">Here at Cogito Magnum Ltd we focus on sourcing best-in-class candidates for
-                            rewarding positions worldwide, and we specialize in the world of Customer Care. Contact us
-                            today and let us know what you’re interested in.</p>
-                        <a href="details.html?service=welfare" class="btn btn-primary learn-more"
-                            id="learn-more-welfare">Learn More</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                    <img src="./images/krakenimages-376KN_ISplE-unsplash.jpg" class="card-img-top"
-                        alt="Service 3 Image">
-                    <div class="card-body">
-                        <h3 class="card-title">Support Users</h3>
-                        <p class="card-text">Recruiting top-notch candidates for leading employers is what we stand for.
-                            We specialize in short-term, long-term, and temporary hires within the industry. Whatever
-                            your needs may be, we are here for you.</p>
-                        <a href="details.html?service=support" class="btn btn-primary learn-more"
-                            id="learn-more-support">Learn More</a>
-                    </div>
-                </div>
-            </div>
+        <div class="mySlides div2 fade">
         </div>
-    </section>
-
-
-
-
-    <section id="about" class="container" style="margin-top: 100px; padding-top: 100px;">
-        <h2 class="text-center mb-4">About Us</h2>
-        <div class="row justify-content-center align-items-center about-section">
-            <div class="col-md-6 text-center">
-                <img src="./images/benjamin-child-GWe0dlVD9e0-unsplash.jpg" class="img-fluid rounded"
-                    alt="About Us Image">
-            </div>
-            <div class="col-md-6">
-                <div class="about-text">
-                    <p id="about-text" class="text-center mt-3">At COGITO MAGNUM LTD, we specialize in connecting
-                        skilled
-                        professionals with agencies in need of specific expertise. Our mission is to bridge the gap
-                        between talent and demand, ensuring our clients receive the best possible candidates.
-
-                        Our team of recruitment experts excels in understanding agency needs and matching them with the
-                        perfect candidates, whether in IT, healthcare, engineering, or other fields. We believe in
-                        building lasting relationships and delivering top-tier talent to help businesses thrive.
-
-                        Join us in creating a world where the right people are in the right places, driving innovation
-                        and excellence..</p>
-                </div>
-            </div>
+        <div class="mySlides div3 fade">
         </div>
-    </section>
-
-    <section id="contact" class="container" style="margin-top: 100px; padding-top: 100px;">
-        <h2 class="text-center mb-4">Contact Us</h2>
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <form action="https://formspree.io/jokerking489@gmail.com" method="POST">
-                    <div class="mb-3">
-                        <label for="name" class="form-label">Name</label>
-                        <input type="text" class="form-control" id="name" name="name" placeholder="Your Name" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email address</label>
-                        <input type="email" class="form-control" id="email" name="_replyto"
-                            placeholder="name@example.com" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="message" class="form-label">Message</label>
-                        <textarea class="form-control" id="message" name="message" rows="4" placeholder="Your Message"
-                            required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
-            </div>
+        <a class="prev" id="prev">&#10094;</a>
+        <a class="next" id="next">&#10095;</a>
+        <!-- <a href="#" id="boom">click</a> -->
+        <br>
+        <div class="dot-container">
+            <span id="img1" class="dot"></span>
+            <span id="img2" class="dot"></span>
+            <span id="img3" class="dot"></span>
         </div>
-    </section>
+    </div>
 
+</section>
+<!-- movin add end -->
 
-    <footer class="footer bg-dark text-white py-4">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 mb-4">
-                    <h4>COGITO MAGNUM LTD</h4>
-                    <p>Your trusted partner in business solutions. We're dedicated to helping you achieve success
-                        through innovative strategies and exceptional service.</p>
+<!-- populer start -->
+<section class="quick " >
+    <div id="new" class=" quick " >
+        <h2 class="text-capitalize text-center">quick-pick</h2>
+        <div class="row justify-content-center mt-3">
+            <div class="col-md-12 col-lg-4 bg-white" id="best">
+                <div class=" text-center p-2">
+                    <h3 class="text-capitalize boder-end-0 ">best seller</h3>
                 </div>
-                <div class="col-md-2 mb-4">
-                    <h5>Quick Links</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="#home" class="text-white">Home</a></li>
-                        <li><a href="#services" class="text-white">Our Services</a></li>
-                        <li><a href="#about" class="text-white">About Us</a></li>
-                        <li><a href="#contact" class="text-white">Contact Us</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-3 mb-4">
-                    <h5>Contact Info</h5>
-                    <ul class="list-unstyled">
-                        <li><strong>Email:</strong> info@cogitomagnum.com</li>
-                        <li><strong>Phone:</strong> +353877930939</li>
-                        <li><strong>Address:</strong> Ormond Building 31-36 Ormond Quay Upper, Dublin, Dublin</li>
-                    </ul>
-                </div>
-                <div class="col-md-3 mb-4">
-                    <h5>Follow Us</h5>
-                    <a href="#" class="text-white me-3"><i class="bi bi-facebook"></i></a>
-                    <a href="#" class="text-white me-3"><i class="bi bi-twitter"></i></a>
-                    <a href="#" class="text-white me-3"><i class="bi bi-instagram"></i></a>
-                    <a href="#" class="text-white"><i class="bi bi-linkedin"></i></a>
+
+                <div class="">
+                    <?php
+                    $sql_best = "SELECT * FROM products ORDER BY price DESC, RAND() LIMIT 3";
+                    $query_best = mysqli_query($conn, $sql_best);
+                    $show_bests = mysqli_fetch_all($query_best, MYSQLI_ASSOC);
+                    ?>
+                    <?php foreach ($show_bests as $show_best) : ?>
+
+                        <div class="d-flex align-item-start gap-1 mb-3 shadow p-2">
+                            <a href="display.php?display=<?php echo $show_best['perfume_id'] ?>"><img src="./DASH/upload/<?php echo $show_best['photo'] ?>" alt="" class=" zoom rounded" width="80" height="100"></a>
+                            <div>
+                                <div class="">
+                                    <p class="ms-1 mb-0 text-capitalize"><?php echo $show_best['perfume'] ?></p>
+                                </div>
+                                <span class="ms-1">NGN <?php echo number_format($show_best['price'])  ?></span>
+                                <div class="sell1 d-flex">
+                                    <div class="sell2 justify-content-between my-1 mx-1 d-flex">
+                                        <button class="rounded-pill border border-0 mx-3 bg-white ">
+                                            <a href="updatecart.php?cart=<?php echo $show_best['perfume_id'] ?> &location=index" class="text-decoration-none text-dark">Add to cart</a>
+                                        </button>
+                                    </div>
+                                    <div class=" mx-3">
+                                        <button type="submit" class="cart rounded-circle"><i class="bi bi-person-hearts fs-5"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-12 text-center">
-                    <button onclick="scrollToTop()" class="btn btn-secondary my-3">Back to Top</button>
-                    <p class="mb-0">&copy; 2024 COGITO MAGNUM LTD. All rights reserved.</p>
+
+            <div class="col-md-12 col-lg-4 bg-white" id="feat">
+                <div class=" text-center p-2">
+                    <h3 class="text-capitalize boder-end-0 ">featured</h3>
+                </div>
+
+                <div class="">
+                    <?php
+                    $sql_feat = "SELECT * FROM products ORDER BY RAND() LIMIT 3";
+                    $query_feat = mysqli_query($conn, $sql_feat);
+                    $show_feats = mysqli_fetch_all($query_feat, MYSQLI_ASSOC);
+                    ?>
+                    <?php foreach ($show_feats as $show_feat) : ?>
+
+                        <div class="d-flex align-item-start gap-1 mb-3 shadow p-2">
+                            <a href="display.php?display=<?php echo $show_feat['perfume_id'] ?>"><img src="./DASH/upload/<?php echo $show_feat['photo'] ?>" alt="" class=" zoom rounded" width="80" height="100"></a>
+                            <div>
+                                <div class="ms-1">
+                                    <p class="mb-0 text-capitalize"><?php echo $show_feat['perfume'] ?></p>
+                                </div>
+                                <span class="ms-1">NGN <?php echo number_format($show_feat['price']) ?></span>
+                                <div class="sell1 d-flex">
+                                    <div class="sell2 justify-content-between my-1 mx-1 d-flex">
+                                        <button class="rounded-pill border border-0 mx-3 bg-white ">
+                                            <a href="updatecart.php?cart=<?php echo $show_feat['perfume_id'] ?> &location=index" class="text-decoration-none text-dark">Add to cart</a>
+                                        </button>
+                                    </div>
+                                    <div class=" mx-3">
+                                        <button type="submit" class="cart rounded-circle"><i class="bi bi-person-hearts fs-5"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+
                 </div>
             </div>
-        </div>
-    </footer>
+
+            <div class="col-md-12 col-lg-4 bg-white" id="new">
+                <div class=" text-center p-2">
+                    <h3 class="text-capitalize boder-end-0 ">new arrival</h3>
+                </div>
+
+                <div class="">
+                    <?php
+                    $sql_query_new = "SELECT * FROM products ORDER BY 1 DESC LIMIT 3";
+                    $query_new = mysqli_query($conn, $sql_query_new);
+                    $show_new = mysqli_fetch_all($query_new, MYSQLI_ASSOC);
+                    // $number_of_show_new = mysqli_num_rows($query);
 
 
+                    ?>
+                    <?php foreach ($show_new as $show_nw) : ?>
+
+                        <div class="d-flex align-item-start gap-1 mb-3 shadow p-2">
+                            <a href="display.php?display=<?php echo $show_nw['perfume_id'] ?>"><img src="./DASH/upload/<?php echo $show_nw['photo'] ?>" alt="" class=" zoom rounded" width="80" height="100"></a>
+                            <div>
+                                <div class="ms-1">
+                                    <p class="mb-0 text-capitalize"><?php echo $show_nw['perfume'] ?></p>
+                                </div>
+                                <span class="ms-1">NGN <?php echo number_format($show_nw['price'])  ?></span>
+                                <div class="sell1 d-flex">
+                                    <div class="sell2 justify-content-between my-1 mx-1 d-flex">
+                                        <button class="rounded-pill border border-0 mx-3 bg-white ">
+                                            <a href="updatecart.php?cart=<?php echo $show_nw['perfume_id'] ?> &location=index" class="text-decoration-none text-dark">Add to cart</a>
+                                        </button>
+                                    </div>
+                                    <div class=" mx-3">
+                                        <button type="submit" class="cart rounded-circle"><i class="bi bi-person-hearts fs-5"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
 
 
+                    <!-- <div class="d-flex align-item-start gap-1 mb-3 shadow p-2">
+                        <img src="./image/filip-baotic-Vq511boXLUk-unsplash.jpg" alt="" class="zoom rounded" width="80" height="100">
+                        <div>
+                            <p class="text-capitalize  mb-0">Valentino born in roma</p>
+                            <span class="">NGN 189,000</span>
+                            <div class="sell1 d-flex">
+                                <div class="sell2 justify-content-between my-1 mx-1 d-flex">
+                                    <button class="rounded-pill border border-0 mx-3 bg-white ">
+                                        <a href="home.php?cart=<?php echo $show_product['perfume_id'] ?>" class="text-decoration-none text-dark">Add to cart</a>
+                                    </button>
+                                </div>
+                                <div class=" mx-3">
+                                    <button type="submit" class="cart rounded-circle"><i class="bi bi-person-hearts fs-5"></i></button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="d-flex align-item-start gap-1 mb-3 shadow p-2">
+                        <img src="./image/pavlo-t-MfGoZ-QoJFc-unsplash.jpg" alt="" class="zoom rounded" width="80" height="100">
+                        <div>
+                            <p class="text-capitalize mb-0">hugo boss bottled</p>
+                            <span class="">NGN 130,000</span>
+                            <div class="sell1 d-flex">
+                                <div class="sell2 justify-content-between my-1 mx-1 d-flex">
+                                    <button class="rounded-pill border border-0 mx-3 bg-white ">
+                                        <a href="home.php?cart=<?php echo $show_product['perfume_id'] ?>" class="text-decoration-none text-dark">Add to cart</a>
+                                    </button>
+                                </div>
+                                <div class=" mx-3">
+                                    <button type="submit" class="cart rounded-circle"><i class="bi bi-person-hearts fs-5"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+</section>
+
+<?php
+cart();
+?>
+
+<!--come back and try to make this work-->
+
+// <script>
+//     function addToCart(productId) {
+//         // Create an AJAX request
+//         var xhr = new XMLHttpRequest();
+//         xhr.open("GET", "updatecart.php?cart=" + productId + "&location=index", true);
+//         xhr.onreadystatechange = function () {
+//             if (xhr.readyState == 4 && xhr.status == 200) {
+//                 // Handle the response here if needed
+//                 alert("Product added to cart successfully!");
+//             }
+//         };
+//         xhr.send();
+//     }
+// </script>
+<!--<button type="button" class="zap2 add-cart btn mb-3 fw-bold px-4" onclick="addToCart(<?php echo $show_product['perfume_id']; ?>)">ADD TO CART</button>-->
 
 
-    <!-- Bootstrap JS and dependencies -->
-    <script src="business.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
-</body>
+<!-- popular end -->
 
-</html>
+<?php include_once("./includes/bottom.php"); ?>
